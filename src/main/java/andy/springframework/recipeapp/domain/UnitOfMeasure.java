@@ -1,6 +1,9 @@
 package andy.springframework.recipeapp.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * @author AndyChen
@@ -15,10 +18,7 @@ public class UnitOfMeasure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String umo;
-
-    @OneToOne
-    private Ingredient ingredient;
+    private String description;
 
     public Long getId() {
         return id;
@@ -28,20 +28,13 @@ public class UnitOfMeasure {
         this.id = id;
     }
 
-    public String getUmo() {
-        return umo;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUmo(String umo) {
-        this.umo = umo;
+    public void setDescription(String umo) {
+        this.description = umo;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-    }
 }
 
