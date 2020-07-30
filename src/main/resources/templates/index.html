@@ -5,7 +5,19 @@
     <title>My Index Page</title>
 </head>
 <body>
-<h1>My Index Page!!!</h1>
+<h1 th:text="'Hello Index'">My Index Page!!!</h1>
+<table>
+    <tbody>
+        <th>
+            <td>Description</td>
+            <td>Notes</td>
+        </th>
+        <tr th:each="re:${list}">
+            <td th:text="re">123</td>
+            <td>123</td>
+        </tr>
 
+    </tbody>
+</table>
 </body>
 </html>
