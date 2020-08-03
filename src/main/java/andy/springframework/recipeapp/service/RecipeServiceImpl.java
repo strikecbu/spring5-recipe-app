@@ -4,8 +4,9 @@ import andy.springframework.recipeapp.domain.Recipe;
 import andy.springframework.recipeapp.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * @author AndyChen
@@ -26,8 +27,6 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public Set<Recipe> findAll() {
         final Iterable<Recipe> all = recipeRepository.findAll();
-        final HashSet<Recipe> recipes = new HashSet<>();
-        all.forEach(recipes::add);
-        return recipes;
+        return StreamSupport.stream(all.spliterator(), false).collect(Collectors.toSet());
     }
 }
