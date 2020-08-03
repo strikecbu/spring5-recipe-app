@@ -1,6 +1,7 @@
 package andy.springframework.recipeapp.bootstrap;
 
 import andy.springframework.recipeapp.domain.*;
+import andy.springframework.recipeapp.repositories.CategoryRepository;
 import andy.springframework.recipeapp.repositories.RecipeRepository;
 import andy.springframework.recipeapp.repositories.UnitOfMeasureRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -14,13 +15,18 @@ import java.util.Set;
 @Component
 public class Bootstrap implements CommandLineRunner {
 
-    private RecipeRepository recipeRepository;
+    final private RecipeRepository recipeRepository;
 
-    private UnitOfMeasureRepository unitOfMeasureRepository;
+    final private UnitOfMeasureRepository unitOfMeasureRepository;
 
-    public Bootstrap(RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+    final private CategoryRepository categoryRepository;
+
+
+    public Bootstrap(RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository,
+                     CategoryRepository categoryRepository) {
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -57,11 +63,8 @@ public class Bootstrap implements CommandLineRunner {
         ingredients.add(lemonJuice);
         recipe.setIngredients(ingredients);
 
-//        Category category = new Category();
-//        category.setName("Home");
-//        category.getRecipes().add(recipe);
-//
-//        recipe.getCategories().add(category);
+        final Optional<Category> category_chinese = categoryRepository.findByName("Chinese");
+        recipe.getCategories().add(category_chinese.get());
 
         recipeRepository.save(recipe);
 

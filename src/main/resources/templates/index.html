@@ -8,13 +8,13 @@
 <h1 th:text="'Hello Index'">My Index Page!!!</h1>
 <table>
     <tbody>
-        <th>
+        <tr>
             <td>Description</td>
             <td>Notes</td>
-        </th>
+        </tr>
         <tr th:each="re:${list}">
-            <td th:text="re">123</td>
-            <td>123</td>
+            <td th:text="${re.getDescription()}">123</td>
+            <td th:text="${re.getNotes().getRecipeNotes()}">123</td>
         </tr>
 
     </tbody>

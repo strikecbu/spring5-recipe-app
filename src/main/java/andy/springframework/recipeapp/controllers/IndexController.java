@@ -1,6 +1,6 @@
 package andy.springframework.recipeapp.controllers;
 
-import andy.springframework.recipeapp.repositories.RecipeRepository;
+import andy.springframework.recipeapp.service.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    private RecipeRepository recipeRepository;
+    final private RecipeService recipeService;
 
-    public IndexController(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
+
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model){
-        model.addAttribute("list", recipeRepository.findAll());
+        model.addAttribute("list", recipeService.findAll());
         return "index";
     }
 }
